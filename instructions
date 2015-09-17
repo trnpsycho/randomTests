@@ -20,3 +20,6 @@ You can test the status of the files:
 
 Tell git to commit the changes:
 	git commit -m "Whatever comment you want to put in here. This will be a rollback point."
+
+Tell git to push the files to the remote server:
+	git push origin master
