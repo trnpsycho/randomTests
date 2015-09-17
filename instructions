@@ -1,0 +1,22 @@
+Create a local repo:
+	mkdir <directoryName>
+
+Initialize the folder as a git repo:
+	git init
+
+Add remote repo to the local repo:
+	git add remote origin https://github.com/trnpsycho/randomTests.git
+
+Sync the remote repo into the local repo:
+	git pull origin master
+
+Modify local files, or add/delete files...
+
+Tell git to monitor the local files:
+	git add <filename> OR git add . to add everything.
+
+You can test the status of the files:
+	git status
+
+Tell git to commit the changes:
+	git commit -m "Whatever comment you want to put in here. This will be a rollback point."
