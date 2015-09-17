@@ -5,7 +5,7 @@ Initialize the folder as a git repo:
 	git init
 
 Add remote repo to the local repo:
-	git add remote origin https://github.com/trnpsycho/randomTests.git
+	git remote add origin https://github.com/trnpsycho/randomTests.git
 
 Sync the remote repo into the local repo:
 	git pull origin master
