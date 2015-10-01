@@ -26,3 +26,6 @@ Tell git to push the files to the remote server:
 
 Read the log of changes you’ve done
 	git log
+
+Don't forget to add global parameters to make things easier. Start with user.name and user.email
+
