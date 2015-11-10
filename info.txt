@@ -1,3 +1,10 @@
 Cloud:192.168.1.50
 root:PsychoNumbers
 
+Machine
+192.168.8.5
+root:Dingo3264?
+
+MariaDB
+root:P@ssw0rd7
+
