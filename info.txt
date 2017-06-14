@@ -1,10 +1,14 @@
 Cloud:192.168.1.50
 root:PsychoNumbers
 
+repo.fuelfacs.com
 Machine
 192.168.8.5
-root:Dingo3264?
+root:PsychoNumbers
 
 MariaDB
 root:P@ssw0rd7
+
+Symantec Endpoint Protection
+Pwd: canttouchthis
 
