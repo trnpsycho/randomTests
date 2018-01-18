@@ -12,3 +12,7 @@ root:P@ssw0rd7
 Symantec Endpoint Protection
 Pwd: canttouchthis
 
+github
+trnpsycho
+psycho#
+

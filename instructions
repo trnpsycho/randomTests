@@ -3,10 +3,18 @@ Create a local repo:
 
 Initialize the folder as a git repo:
 	git init
+	
+Get a remote repo and copy it to your local machine:
+	git clone http://address_of_remote_repo
 
 Add remote repo to the local repo:
 	git remote add origin https://github.com/trnpsycho/randomTests.git
 
+Update local files with files from remote:
+	git fetch --all
+	git reset --hard origin/master
+	git pull origin master
+	
 Sync the remote repo into the local repo:
 	git pull origin master
 
