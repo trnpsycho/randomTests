@@ -1,6 +1,6 @@
 Cloud:192.168.1.50
 root:PsychoNumbers
-
+________________________________
 repo.fuelfacs.com
 Machine
 192.168.8.5
@@ -8,10 +8,14 @@ root:PsychoNumbers
 
 MariaDB
 root:P@ssw0rd7
-
+________________________________
+Git Server 172.16.50.10
+root:Psycho####s
+kevin:Psycho####s
+________________________________
 Symantec Endpoint Protection
 Pwd: canttouchthis
-
+________________________________
 github
 trnpsycho
 psycho#
