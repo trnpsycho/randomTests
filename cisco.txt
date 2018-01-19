@@ -1,4 +1,4 @@
-Cisco Switches
+﻿Cisco Switches
 
 LOAD NEW FLASH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -35,6 +35,8 @@ sh vlan = Show all the v-lans with all attached ports.
 sh start = Show startup config
 sh run = Show running config
 sh ip interface brief = show ports available (sh ip int br) (brief doesn’t work on sg-300s)
+
+copy run start = save running configuration to startup configuration.
 
 
 SET TIMEOUT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
