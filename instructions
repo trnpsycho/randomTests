@@ -1,4 +1,4 @@
-Create a local repo:
+﻿Create a local repo:
 	mkdir <directoryName>
 
 Initialize the folder as a git repo:
@@ -38,4 +38,7 @@ Read the log of changes you’ve done
 	git log -p (actually shows the changes inside of the files)
 
 Don't forget to add global parameters to make things easier. Start with user.name and user.email
+
+Open Graphics display of everything:
+	gitk
 
