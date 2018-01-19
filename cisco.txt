@@ -1,0 +1,76 @@
+Cisco Switches
+
+LOAD NEW FLASH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Initialize the flash:
+switch: flash_init
+Initialize the management interface:
+switch: mgmt_init
+
+Then assign an IP address to the management interface:
+switch: set IP_ADDR 10.1.100.2/255.255.255.0
+switch: set DEFAULT_ROUTER 10.1.100.1
+Then configure your TFTP server to have an IP on the same subnet and connect it to the management interface of the switch (ie 10.1.100.1/24)
+Now to tell the switch to retrieve the firmware image:
+switch: copy tftp://10.1.100.1/c2960x-universalk9-mz.152-5b.E.bin flash:c2960x-universalk9-mz.152-5b.E.bin
+The switch should then retrieve the image and save it flash.
+Once the copy is complete boot from it with:
+switch: boot flash:c2960x-universalk9-mz.152-5b.E.bin
+
+Note: Connect your Laptop/TFTP server/whatever to the Management Interface of the switch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OR VIA USB:
+copy usbflash0:c3750e-universalk9-mz.122-58.SE2.bin flash:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+enable or en = enable extra options
+
+terminal length 0 = Stop the terminal from only showing 25 lines at a time.
+terminal length 25
+
+sh = show
+
+sh vlan = Show all the v-lans with all attached ports.
+sh start = Show startup config
+sh run = Show running config
+sh ip interface brief = show ports available (sh ip int br) (brief doesn’t work on sg-300s)
+
+
+SET TIMEOUT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+en
+config t
+line con 0 (This would do the console port)
+exec-timeout M S (where M is Minutes and S is seconds)
+
+EX: exec-timeout 5 30 would lock the port after 5 minutes and 30 seconds. 0 0 would make it never timeout.
+
+TURN OFF DOMAIN LOOKUP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(This turns off looking up unknown commands - for when you mistype something)
+
+en
+config t
+no ip domain-lookup
+
+ADD NEW USER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+en
+config t
+username ‘user’ privilege 15 secret ‘password’
+(username ‘user’ privilege 15 password ‘password’) on SF300
+end
+
+REMOVE USER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+en
+config t
+no username ‘user’
+end
+
+REQUIRE USER TO LOGIN TO CONSOLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create user as described above
+* config t 
+* line con 0 (or whatever number the console is)
+* logging synchronous
+* login local
+* end
