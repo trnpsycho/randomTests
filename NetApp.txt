@@ -1,0 +1,13 @@
+Connect using mRemoteNG to LINEAPP01-03
+
+Unfail Drive
+	priv set advanced
+	disk unfail <diskname> without the <>
+	priv set
+	
+Check status
+	sysconfig -r
+	
+Change owner of drive
+	disk assign <diskname> -o <linetapp0x> -f
+	Replace the diskname and linetapp0x with the real diskname and the netapp device number.
