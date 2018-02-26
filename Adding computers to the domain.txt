@@ -1,0 +1,11 @@
+
+Prior to adding a PC to the domain, please follow the directions below:
+1.       
+2.      Start the registry editor (regedit.exe).
+3.      Navigate to the HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters registry subkey.
+4.      From the Edit menu, select New, DWORD value.
+5.       Enter a name of AllowSingleLabelDnsDomain and press Enter.
+6.      Double-click the new value and set it to 1. Click OK.
+
+Thanks
+Mike
