@@ -1,0 +1,19 @@
+Bug Tracker:
+	Machine name: lnengwkslmp000
+	172.16.50.190
+	root:Dingo3264?
+	
+	MariaDB
+	root:P@ssw0rd7
+
+Cloud / Git server
+	Machine name: Owncloud.pdc1
+	192.168.8.5
+	root:Dingo3264?
+	kevin:psycho#
+	git:git
+
+
+Home Vshere
+192.168.1.73
+root:G0D….
