@@ -5,6 +5,9 @@ Unfail Drive
 	disk unfail <diskname> without the <>
 	priv set
 	
+Zero Disk
+	disk zero spares
+
 Check status
 	sysconfig -r
 	
