@@ -1,4 +1,4 @@
-﻿Create a local repo:
+Create a local repo:
 	mkdir <directoryName>
 
 Initialize the folder as a git repo:
@@ -9,6 +9,8 @@ Get a remote repo and copy it to your local machine:
 
 Add remote repo to the local repo:
 	git remote add origin https://github.com/trnpsycho/randomTests.git
+		or
+	git remote add <name> <second_address.git>
 
 Update local files with files from remote:
 	git fetch --all
@@ -17,6 +19,9 @@ Update local files with files from remote:
 	
 Sync the remote repo into the local repo:
 	git pull origin master
+
+Sync the local repo into the remote
+	git push origin OR git push <name>
 
 Modify local files, or add/delete files...
 
