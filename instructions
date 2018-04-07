@@ -12,6 +12,9 @@ Add remote repo to the local repo:
 		or
 	git remote add <name> <second_address.git>
 
+Show remotes
+	git remote -v
+
 Update local files with files from remote:
 	git fetch --all
 	git reset --hard origin/master
