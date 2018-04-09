@@ -12,5 +12,5 @@ Check status
 	sysconfig -r
 	
 Change owner of drive
-	disk assign <diskname> -o <linetapp0x> -f
-	Replace the diskname and linetapp0x with the real diskname and the netapp device number.
+	disk assign <diskname> -o <LINETAPP0x> -f
+	Replace the diskname and linetapp0x with the real diskname and the netapp device number. (Case matters on the LINETAPP)
