@@ -1,0 +1,815 @@
+
+Using 15593 out of 524288 bytes
+!
+! Last configuration change at 11:02:19 UTC Tue Jul 24 2018 by csi
+! NVRAM config last updated at 11:02:51 UTC Tue Jul 24 2018 by csi
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime localtime
+no service password-encryption
+!
+hostname LEN1DEV_CORE01
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 24000
+enable secret 5 $1$4AFS$gVpIFDXTg/rJWInQ8SsDj1
+!
+username fmcerie privilege 15 secret 5 $1$w7IB$SmwYYRVXXpjn42osjo3l70
+username csi privilege 15 secret 5 $1$MiQh$6qKPHlWGWJUqf5q/4wpOx0
+no aaa new-model
+clock timezone UTC -6 0
+clock summer-time UTC recurring
+switch 1 provision ws-c2960x-48fps-l
+switch 2 provision ws-c2960x-24td-l
+switch 3 provision ws-c2960x-24td-l
+switch 4 provision ws-c2960x-24td-l
+stack-mac persistent timer 0
+ip routing
+!
+!
+ip domain-name dev.kc
+ip name-server 172.16.1.149
+ip name-server 172.16.1.15
+ip name-server 172.16.1.24
+!
+!
+crypto pki trustpoint TP-self-signed-3899666688
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3899666688
+ revocation-check none
+ rsakeypair TP-self-signed-3899666688
+!
+!
+crypto pki certificate chain TP-self-signed-3899666688
+ certificate self-signed 01 nvram:IOS-Self-Sig#2.cer
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+interface Port-channel1
+ description LIN1NETAPP01
+ switchport access vlan 100
+ switchport mode access
+!
+interface Port-channel2
+ description LIN1NETAPP02
+ switchport access vlan 100
+ switchport mode access
+!
+interface Port-channel3
+ description NOT IN USE
+ switchport mode trunk
+!
+interface Port-channel4
+ description NOT IN USE
+ switchport access vlan 333
+ switchport mode trunk
+!
+interface Port-channel6
+ description LINETTAPP NA1
+ switchport access vlan 80
+ switchport mode trunk
+!
+interface Port-channel7
+ description LINETTAPP NA2
+ switchport access vlan 80
+ switchport mode trunk
+!
+interface Port-channel8
+ description POWERHOUSE 1
+ switchport mode trunk
+!
+interface Port-channel9
+ description POWERHOUSE 2
+ switchport mode trunk
+!
+interface Port-channel10
+ description POWERHOUSE 3
+ switchport mode trunk
+!
+interface Port-channel11
+ description POWERHOUSE 4
+ switchport mode trunk
+!
+interface FastEthernet0
+ no ip address
+ no ip route-cache
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/2
+ description BackPadio Camera
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/3
+ description CyberPower UPS
+ switchport access vlan 255
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/5
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/6
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/7
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/8
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/9
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/10
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/11
+ description License Dongle
+ switchport access vlan 60
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 20
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ description VLAN 30
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/14
+ description VLAN 50
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/15
+ shutdown
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/16
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/17
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 10
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 20
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ description VLAN 20 ACCESS -JWW
+ switchport access vlan 20
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 333
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ description VLAN 30 ACCESS -JWW
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description VLAN 40 ACCESS -JWW
+ switchport access vlan 40
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 40
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/25
+ description VLAN 50 ACCESS -JWW
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/26
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/27
+ switchport mode trunk
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/28
+ description VLAN 60 ACCESS -JWW
+ switchport access vlan 60
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/29
+ description DMZ to Juniper
+ switchport access vlan 666
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/30
+ switchport access vlan 70
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/31
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/32
+ description VLAN 100 ACCESS -JWW
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/33
+ description VLAN 255 ACCESS -JWW
+ switchport access vlan 255
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/34
+ description LIN1NETAPP02
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ channel-group 2 mode on
+!
+interface GigabitEthernet1/0/35
+ description LINETAPP management
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/36
+ description LIN1NETAPP02
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ channel-group 2 mode on
+!
+interface GigabitEthernet1/0/37
+ switchport access vlan 60
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/38
+ description VLAN 10 ACCESS -JWW 
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/39
+ description VLAN 60 ACCESS
+ switchport access vlan 60
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/40
+ description VLAN 60 ACCESS -JWW
+ switchport access vlan 60
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/41
+ description VLAN 60 ACCESS
+ switchport access vlan 60
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/42
+ description LIN1NETAPP01
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ channel-group 1 mode on
+!
+interface GigabitEthernet1/0/43
+ description VLAN 60 ACCESS -JWW 
+ switchport access vlan 60
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/44
+ description LIN1NETAPP01
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ channel-group 1 mode on
+!
+interface GigabitEthernet1/0/45
+ description LINETAPP
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/46
+ description VLAN 60 ACCESS -JWW
+ switchport access vlan 60
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/47
+ switchport access vlan 60
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/48
+ switchport mode trunk
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/49
+!
+interface GigabitEthernet1/0/50
+!
+interface GigabitEthernet1/0/51
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/52
+ shutdown
+!
+interface GigabitEthernet2/0/1
+!
+interface GigabitEthernet2/0/2
+!
+interface GigabitEthernet2/0/3
+!
+interface GigabitEthernet2/0/4
+!
+interface GigabitEthernet2/0/5
+!
+interface GigabitEthernet2/0/6
+!
+interface GigabitEthernet2/0/7
+!
+interface GigabitEthernet2/0/8
+!
+interface GigabitEthernet2/0/9
+!
+interface GigabitEthernet2/0/10
+!
+interface GigabitEthernet2/0/11
+!
+interface GigabitEthernet2/0/12
+!
+interface GigabitEthernet2/0/13
+!
+interface GigabitEthernet2/0/14
+!
+interface GigabitEthernet2/0/15
+!
+interface GigabitEthernet2/0/16
+!
+interface GigabitEthernet2/0/17
+!
+interface GigabitEthernet2/0/18
+!
+interface GigabitEthernet2/0/19
+!
+interface GigabitEthernet2/0/20
+!
+interface GigabitEthernet2/0/21
+!
+interface GigabitEthernet2/0/22
+!
+interface GigabitEthernet2/0/23
+!
+interface GigabitEthernet2/0/24
+!
+interface GigabitEthernet2/0/25
+!
+interface GigabitEthernet2/0/26
+!
+interface TenGigabitEthernet2/0/1
+!
+interface TenGigabitEthernet2/0/2
+!
+interface GigabitEthernet3/0/1
+ description POWERHOUSE 1
+ switchport mode trunk
+ channel-group 8 mode on
+!
+interface GigabitEthernet3/0/2
+ description POWERHOUSE 1
+ switchport mode trunk
+ channel-group 8 mode on
+!
+interface GigabitEthernet3/0/3
+ description powerhouse 1 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/4
+ description powerhouse 2 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/5
+ description POWERHOUSE 2
+ switchport mode trunk
+ channel-group 9 mode on
+!
+interface GigabitEthernet3/0/6
+ description POWERHOUSE 2
+ switchport mode trunk
+ channel-group 9 mode on
+!
+interface GigabitEthernet3/0/7
+ description POWERHOUSE 3
+ switchport mode trunk
+ channel-group 10 mode on
+!
+interface GigabitEthernet3/0/8
+ description POWERHOUSE 3
+ switchport mode trunk
+ channel-group 10 mode on
+!
+interface GigabitEthernet3/0/9
+ description powerhouse 3 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/10
+ description powerhouse 4 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/11
+ description POWERHOUSE 4
+ switchport mode trunk
+ channel-group 11 mode on
+!
+interface GigabitEthernet3/0/12
+ description POWERHOUSE 4
+ switchport mode trunk
+ channel-group 11 mode on
+!
+interface GigabitEthernet3/0/13
+!
+interface GigabitEthernet3/0/14
+!
+interface GigabitEthernet3/0/15
+!
+interface GigabitEthernet3/0/16
+!
+interface GigabitEthernet3/0/17
+!
+interface GigabitEthernet3/0/18
+!
+interface GigabitEthernet3/0/19
+!
+interface GigabitEthernet3/0/20
+!
+interface GigabitEthernet3/0/21
+!
+interface GigabitEthernet3/0/22
+!
+interface GigabitEthernet3/0/23
+!
+interface GigabitEthernet3/0/24
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/25
+!
+interface GigabitEthernet3/0/26
+!
+interface TenGigabitEthernet3/0/1
+ description LINETTAPP NA2
+ switchport access vlan 80
+ switchport mode trunk
+ channel-group 7 mode on
+!
+interface TenGigabitEthernet3/0/2
+ description LINETTAPP NA2
+ switchport access vlan 80
+ switchport mode trunk
+ channel-group 6 mode on
+!
+interface GigabitEthernet4/0/1
+ description POWERHOUSE 1
+ switchport mode trunk
+ channel-group 8 mode on
+!
+interface GigabitEthernet4/0/2
+ description POWERHOUSE 1
+ switchport mode trunk
+ channel-group 8 mode on
+!
+interface GigabitEthernet4/0/3
+ description powerhouse 1 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/4
+ description powerhouse 2 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/5
+ description POWERHOUSE 2
+ switchport mode trunk
+ channel-group 9 mode on
+!
+interface GigabitEthernet4/0/6
+ description POWERHOUSE 2
+ switchport mode trunk
+ channel-group 9 mode on
+!
+interface GigabitEthernet4/0/7
+ description POWERHOUSE 3
+ switchport mode trunk
+ channel-group 10 mode on
+!
+interface GigabitEthernet4/0/8
+ description POWERHOUSE 3
+ switchport mode trunk
+ channel-group 10 mode on
+!
+interface GigabitEthernet4/0/9
+ description powerhouse 3 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/10
+ description powerhouse 4 manage
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/11
+ description POWERHOUSE 4
+ switchport mode trunk
+ channel-group 11 mode on
+!
+interface GigabitEthernet4/0/12
+ description POWERHOUSE 4
+ switchport mode trunk
+ channel-group 11 mode on
+!
+interface GigabitEthernet4/0/13
+!
+interface GigabitEthernet4/0/14
+!
+interface GigabitEthernet4/0/15
+!
+interface GigabitEthernet4/0/16
+!
+interface GigabitEthernet4/0/17
+!
+interface GigabitEthernet4/0/18
+!
+interface GigabitEthernet4/0/19
+!
+interface GigabitEthernet4/0/20
+!
+interface GigabitEthernet4/0/21
+!
+interface GigabitEthernet4/0/22
+!
+interface GigabitEthernet4/0/23
+!
+interface GigabitEthernet4/0/24
+!
+interface GigabitEthernet4/0/25
+!
+interface GigabitEthernet4/0/26
+ switchport access vlan 60
+ switchport mode access
+!
+interface TenGigabitEthernet4/0/1
+ description LINETTAPP NA2
+ switchport access vlan 80
+ switchport mode trunk
+ channel-group 7 mode on
+!
+interface TenGigabitEthernet4/0/2
+ description LINETTAPP NA2
+ switchport access vlan 80
+ switchport mode trunk
+ channel-group 6 mode on
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 172.16.10.254 255.255.255.0
+ ip helper-address 172.16.20.22
+ ip helper-address 172.16.20.23
+!
+interface Vlan20
+ ip address 172.16.20.254 255.255.255.0
+ ip helper-address 172.16.20.22
+ ip helper-address 172.16.20.23
+!
+interface Vlan30
+ ip address 172.16.30.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan40
+ ip address 172.16.40.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan50
+ ip address 172.16.50.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan51
+ ip address 172.16.51.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan60
+ ip address 172.16.60.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan70
+ ip address 172.16.70.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan100
+ ip address 172.16.1.254 255.255.255.0
+ ip helper-address 172.16.1.24
+ ip helper-address 172.16.1.149
+!
+interface Vlan255
+ ip address 172.16.255.253 255.255.255.0
+!
+interface Vlan666
+ no ip address
+!
+ip default-gateway 172.16.255.254
+ip http server
+ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 172.16.255.254
+ip route 192.168.0.0 255.255.255.0 172.16.50.246
+!
+!
+!
+line con 0
+ logging synchronous
+ login local
+line vty 0 4
+ login local
+line vty 5 15
+ login local
+!
+ntp server 172.16.1.24 prefer
+end
+
+LEN1DEV_CORE01#exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LEN1DEV_CORE01 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
