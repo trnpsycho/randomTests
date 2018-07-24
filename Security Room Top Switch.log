@@ -1,0 +1,496 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.07.24 16:15:40 =~=~=~=~=~=~=~=~=~=~=~=
+
+
+User Access Verification
+
+Username: csi
+Password: 
+LEN1DEV_COMPUTERROOM2#term
+LEN1DEV_COMPUTERROOM2#terminal len 0
+LEN1DEV_COMPUTERROOM2#sh run
+Building configuration...
+
+Current configuration : 9517 bytes
+!
+! Last configuration change at 15:31:24 UTC Wed Jun 6 2018 by csi
+! NVRAM config last updated at 15:31:57 UTC Wed Jun 6 2018 by csi
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname LEN1DEV_COMPUTERROOM2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username fmcerie privilege 15 secret 5 $1$0Ae1$p2BgAewOX8poIcHfaNCep0
+username kevin privilege 15 secret 5 $1$B./7$TZFpp58ZtRxYK7/xQgeQ01
+username csi privilege 15 secret 5 $1$4SYz$Tj7obxhjwQHiHHJbM/W1i.
+no aaa new-model
+clock timezone UTC -6 0
+clock summer-time UTC recurring
+switch 1 provision ws-c2960x-48fps-l
+!
+!
+ip domain-name pdc1
+ip name-server 172.16.1.24
+ip name-server 172.16.1.149
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1570788480
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1570788480
+ revocation-check none
+ rsakeypair TP-self-signed-1570788480
+!
+!
+crypto pki certificate chain TP-self-signed-1570788480
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31353730 37383834 3830301E 170D3137 30393033 31323530 
+  31375A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 35373037 
+  38383438 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  81009724 1765F72B 0D71E111 7601788D 40CDF767 22AC4CEB 74A1C766 D8FA358B 
+  5F0D6029 9867E15A F2F4DD9D D88E1DA3 5ECA0C2B 558CA2B3 3EB975DF 3022EC8B 
+  B06FA075 E8ACF994 86BDFE61 5225139C CBD5AE23 81731FA2 34D4E7E6 3D2A2927 
+  6766E0D8 356AD4F5 6454C7A8 8B14E5D9 357AC627 C8ABAB61 BF71CCAD E663F839 
+  4ACF0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14BBD130 5DA41C44 EA478D62 E828E7FE CF8E8DB9 8C301D06 
+  03551D0E 04160414 BBD1305D A41C44EA 478D62E8 28E7FECF 8E8DB98C 300D0609 
+  2A864886 F70D0101 05050003 81810074 9FAB9C9A 5EF6E9B3 C7533EB8 D5A0BC69 
+  40C1490A 5824362A 56001847 57EF2A58 DC7AADD4 BA073A32 CC0B061B 9A1B01CD 
+  855ABFB5 64E25D85 81A7B396 AF3D32FD 3D18EF1D 373B5AA5 954D62B0 5F32D1BA 
+  E95BFC43 99371A66 619C649B 01776DDD 087101A9 69F490E6 8C42C047 C012AEF6 
+  D3AAE087 EF41C3E6 28B615A7 3DF7D1
+  	quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ switchport mode trunk
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/2
+ switchport mode trunk
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/3
+ switchport mode trunk
+ power inline auto max 15400
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 100
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/25
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/26
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/27
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/28
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/29
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/30
+ switchport access vlan 30
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/31
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/32
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/33
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/34
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/35
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/36
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/37
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/38
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/39
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/40
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/41
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/42
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/43
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/44
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/45
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/46
+ switchport access vlan 50
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/47
+ switchport access vlan 51
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/48
+ switchport access vlan 51
+ switchport mode access
+ power inline auto max 15400
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/49
+!
+interface GigabitEthernet1/0/50
+!
+interface GigabitEthernet1/0/51
+!
+interface GigabitEthernet1/0/52
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan100
+ ip address 172.16.1.253 255.255.255.0
+!
+ip default-gateway 172.16.255.254
+ip http server
+ip http secure-server
+!
+ip ssh version 2
+!
+!
+!
+!
+line con 0
+ logging synchronous
+ login local
+line vty 0 4
+ password cisco
+ logging synchronous
+ login local
+line vty 5 15
+ password cisco
+ logging synchronous
+ login local
+!
+ntp server 172.16.1.24 prefer
+end
+
+LEN1DEV_COMPUTERROOM2#exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LEN1DEV_COMPUTERROOM2 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+

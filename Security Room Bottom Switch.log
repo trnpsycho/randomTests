@@ -1,0 +1,436 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.07.24 16:14:22 =~=~=~=~=~=~=~=~=~=~=~=
+
+LEN1DEV_COMPUTERROOM#sh run
+Building configuration...
+
+Current configuration : 8204 bytes
+!
+! No configuration change since last restart
+! NVRAM config last updated at 11:12:05 UTC Tue Jul 24 2018
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname LEN1DEV_COMPUTERROOM
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$K66B$xVn2yXKSniXfNy5qVXPtl0
+!
+username fmcerie privilege 15 secret 5 $1$0Ae1$p2BgAewOX8poIcHfaNCep0
+username csi privilege 15 secret 5 $1$j.oY$eBnj5fRlUmwagPctIh3r/1
+no aaa new-model
+clock timezone UTC -6 0
+clock summer-time UTC recurring
+switch 1 provision ws-c2960x-48fps-l
+!
+!
+ip domain-name pdc1
+ip name-server 172.16.1.149
+ip name-server 172.16.1.15
+ip name-server 172.16.1.24
+!
+!
+crypto pki trustpoint TP-self-signed-3899871872
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3899871872
+ revocation-check none
+ rsakeypair TP-self-signed-3899871872
+!
+!
+crypto pki certificate chain TP-self-signed-3899871872
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33383939 38373138 3732301E 170D3138 30373234 31363132 
+  30355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 38393938 
+  37313837 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100C2D5 2B02A740 59A3F990 E190886C D6FF8DE8 651D3BD5 B85D93D8 B3C548F6 
+  081803CC 0DE303A4 43ADAE8B D271DCAA 82D225A4 C0391B72 20A39A9E 7E0FED0B 
+  C1413152 0F131212 F814E7E1 9D2AF675 F1C00E6C E406152E 454E3A04 64B28815 
+  12A346DD 004B8406 0466DD1E 1A2D6ADC 6D4605A3 4AC37D22 2E70611B 8DE2FF5B 
+  743F0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14467A8E 8511E074 6099061E CFA65ECC B2515E53 88301D06 
+  03551D0E 04160414 467A8E85 11E07460 99061ECF A65ECCB2 515E5388 300D0609 
+  2A864886 F70D0101 05050003 81810086 979AF7EB 23E5D46F D599C3FD 2DE9E3A8 
+  F48A13AF CC128CBE 4168DB6F 61C31E4F 20342575 B975FF0C 8CBF975D CA31D92C 
+  D757A091 47964F07 4157CAE5 1E2A57A2 D64A4299 A7400F2F 8D3F127D 3813AA55 
+  D0DE5484 9423FBEC 14E42EA6 D3CF0576 23FCAC5B F031E0BD 85FDA262 AF499691 
+  775CAD51 A78DDFCB 09BCE484 8B2ABF
+  	quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+interface Port-channel1
+ description BackupServer
+ switchport access vlan 60
+ switchport mode access
+!
+interface FastEthernet0
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/2
+!
+interface GigabitEthernet1/0/3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 100
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/25
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/26
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/27
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/28
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/29
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/30
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/31
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/32
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/33
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/34
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/35
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/36
+ switchport access vlan 50
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/37
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/38
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/39
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/40
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/41
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/42
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/43
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/44
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/45
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/46
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/47
+ description Backup Server
+ switchport access vlan 60
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/48
+ description Backup Server
+ switchport access vlan 60
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/49
+!
+interface GigabitEthernet1/0/50
+!
+interface GigabitEthernet1/0/51
+!
+interface GigabitEthernet1/0/52
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan100
+ ip address 172.16.1.253 255.255.255.0
+!
+ip default-gateway 172.16.255.254
+ip http server
+ip http secure-server
+!
+!
+!
+!
+line con 0
+ logging synchronous
+ login local
+line vty 0 4
+ password cisco
+ logging synchronous
+ login local
+line vty 5 15
+ password cisco
+ logging synchronous
+ login local
+!
+ntp server 172.16.1.24 prefer
+end
+
+LEN1DEV_COMPUTERROOM#exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LEN1DEV_COMPUTERROOM con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
