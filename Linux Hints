@@ -1,0 +1,15 @@
+Active Directory in Firefox:
+____________________________________________________________________________________
+
+    You could try using Kerberos for authenticating against Windows Active directory servers. After you have installed kerberos client programs (On Debian, the package krb5-user). Use the command
+
+    kinit user@DOMAIN.NAME
+
+    It would ask for your password. And create a ticket cache file (named something like /tmp/krb5cc_uid). In firefox, visit about:config, look for the key "network.negotiate-auth.trusted-uris" and add the services (or domain suffixes) you want firefox to send the authentication credentials for. Refreshing the intranet page should get you in.
+
+    The ticket/credential cache would expire at some time set by the domain admins. Within a grace period you could renew it using `kinit -R' without having to type your password again.
+
+    The command `klist' would list some more information about your ticket/cache.
+
+    If you want to clear the cached credentials use `kdestroy'.
+____________________________________________________________________________________
