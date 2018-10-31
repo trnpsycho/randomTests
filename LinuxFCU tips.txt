@@ -1,0 +1,15 @@
+Installing options to mount a windows drive.
+	1) First connect the FCU to a network that has internet access. This can be done by setting the network script to pull a DHCP address.
+		a) Do this my editing the /etc/sysconfig/network-scripts/ifcfg-eth0 file to include the following: BOOTPROTO:dhcp.
+	2) Install cifs-utils	
+		a) Use the command: yum install cifs-utils
+	3) Mount your drive:
+		a) mkdir /mnt/win (use whatever you want in place of win)
+		b) mount -t cifs -o username=UCOS,password=qwerty //172.16.40.189/UCOS /mnt/win (obviously replace username, password, ipaddress, sharename, and mount point.)
+___________________________________________________________________________________________________________________________________________________
+
+Fixing cleanfcu script if needed for 6.0+ FCUs
+	1) Edit /csi/bin/cleanfcu script.
+		a) change sudo rm /csi/EwsCfgTemp.dld 2>1 > /dev/null to sudo rm /csi/EwsCfgTemp.dld* 2>1 > /dev/null (Note the * in the change)
+		b) change sudo rm /csi/setpoints.bin 2>1 > /dev/null to sudo rm /csi/setpoints.bin* 2>1 > /dev/null (Note the * in the change)
+___________________________________________________________________________________________________________________________________________________
