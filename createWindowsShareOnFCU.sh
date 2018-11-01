@@ -61,7 +61,7 @@ function main
 {	
 	printHeader
 	
-	if [ -d "$mountPoint" ]
+	if mount|grep $mountServer >> /dev/null;
 	then
 		mountExists="(Already mounted)"
 	else
