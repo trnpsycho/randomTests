@@ -13,3 +13,5 @@ Fixing cleanfcu script if needed for 6.0+ FCUs
 		a) change sudo rm /csi/EwsCfgTemp.dld 2>1 > /dev/null to sudo rm /csi/EwsCfgTemp.dld* 2>1 > /dev/null (Note the * in the change)
 		b) change sudo rm /csi/setpoints.bin 2>1 > /dev/null to sudo rm /csi/setpoints.bin* 2>1 > /dev/null (Note the * in the change)
 ___________________________________________________________________________________________________________________________________________________
+Convert FCU img file to VDI
+	1) VBoxManage convertdd input.img output.vdi
