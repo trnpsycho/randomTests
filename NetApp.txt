@@ -1,4 +1,4 @@
-Connect using mRemoteNG to LINEAPP01-03
+ Connect using mRemoteNG to LINEAPP01-03
 
 Unfail Drive
 	priv set advanced
@@ -14,3 +14,6 @@ Check status
 Change owner of drive
 	disk assign <diskname> -o <LINETAPP0x> -f
 	Replace the diskname and linetapp0x with the real diskname and the netapp device number. (Case matters on the LINETAPP)
+
+In cases where the disk was installed in a newer version of NETAPP than we have, the drive will first need to be unfilled using the -s version
+	EX: disk unfail -s <diskname>
