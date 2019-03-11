@@ -1,0 +1,21 @@
+** Shutdown all running VMs
+
+** Enter maintenance mode
+vim-cmd /hostsvc/maintenance_mode_enter
+
+** Setup firewall rules
+esxcli network firewall ruleset set -e true -r httpClient
+
+** TURN ON DATASTORE FOR SYSTEM SWAP!!!!! (Mangage -> System -> Swap)
+
+** Search for latest install. Look for files that end in -standard
+esxcli software sources profile list -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml | grep ESXi-6.7
+
+** Replace the last part of this line (after the -p) with the file you found in the above statement.
+esxcli software profile update -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml -p ESXi-6.7.0-20190104001-standard 
+
+** Reboot when prompted
+reboot
+
+** Exit maintenance mode
+vim-cmd /hostsvc/maintenance_mode_exit

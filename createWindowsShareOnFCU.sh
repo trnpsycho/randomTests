@@ -43,7 +43,7 @@ function printHeader
 	
 	printf "Current settings:\n\n"
 	printVariables
-	printf "\n\n\n\n"
+	printf "\n\n"
 }
 
 # List out the current settings
@@ -75,7 +75,7 @@ function main
 		
 		printf "(q) Quit\n\n"
 		
-		job = "q"
+		job="q"
 		
 		printf "Enter (1/2/3 or q) then hit [Enter]: "
 			read job
