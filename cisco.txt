@@ -24,6 +24,10 @@ OR VIA USB:
 copy usbflash0:c3750e-universalk9-mz.122-58.SE2.bin flash:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+OR VIA USB with Tar file:
+archive download-sw /overwrite /reload usbflash0://IOS_filename.tar
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 enable or en = enable extra options
 
 terminal length 0 = Stop the terminal from only showing 25 lines at a time.
