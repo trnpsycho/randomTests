@@ -1,0 +1,160 @@
+###################################################################################
+# Created By Kevin Farley...
+# 11/28/10
+###################################################################################
+# Configuration zone...
+###################################################################################
+
+# Use Xft?
+use_xft yes
+xftfont DejaVu Sans:size=8
+xftalpha 0.8
+text_buffer_size 2048
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_transparent yes
+own_window_colour 000000
+own_window_type normal
+own_window_argb_visual
+own_window_argb_value 90
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+default_bar_size 100 8
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 250
+maximum_width 250
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+# border_margin 10
+border_inner_margin 5
+
+# border width
+border_width 0
+
+# Default colors
+default_color gray
+color1 white
+color2 orange
+
+# Text alignment
+alignment top_left
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 1655
+gap_y 2
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 5
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+###################################################################################
+# End Configuration zone...
+###################################################################################
+TEXT
+${color1}${hr 2}
+${color1}${hr 2}
+ ${alignc}${color1}${font Black:size=48}${time %H:%M}${font}$color
+ ${alignc}${color1}${font Black:size=14}${time %B %d, %Y (%a)}${font}$color
+${color1}${hr 2}
+${color1}${hr 2}
+
+${color1}SYSTEM ${hr 2}$color
+ ${color}Name:         ${color2}${alignr}${nodename} 
+ ${color}Kernal:       ${color2}${alignr}${kernel} on ${machine}$color
+ ${color}Version: ${color2}${alignr}${execi 9999999 more /etc/os-release|grep '^VERSION\='|cut -d'"' -f2}
+ ${color}Ubuntu Base:  ${color2}${alignr}${execi 9999999 more /etc/os-release|grep '^UBUNTU_CODENAME'|cut -d'=' -f2}
+ ${color}Uptime:       ${color2}${alignr}${uptime}
+
+${color1}CPUs ${hr 2}$color
+ Frequency: ${alignr}${freq_g cpu0}GHz
+ Core 0: ${cpu cpu0}% ${alignr}${color2}${cpubar cpu0 8,100}$color
+ Core 1: ${cpu cpu1}% ${alignr}${color2}${cpubar cpu1 8,100}$color
+ Core 2: ${cpu cpu2}% ${alignr}${color2}${cpubar cpu2 8,100}$color
+ Core 3: ${cpu cpu3}% ${alignr}${color2}${cpubar cpu3 8,100}$color
+
+${voffset -10}${color1}MEM ${hr 2}$color
+ RAM: $memperc% ${alignr}${color2}${membar}$color
+   ${alignr}$mem of $memmax 
+ SWAP: $swapperc% ${alignr}${color2}${swapbar}$color
+
+${voffset -10}${color1}HD ${hr 2}$color
+ Linux: ${alignr}${fs_used /}/${fs_size /} ${color2}${fs_bar 8,100 /}$color
+ ${if_mounted /media/kevin/Data}Data: ${alignr}${fs_used /media/kevin/Data}/${fs_size /media/kevin/Data} ${color2}${fs_bar 8,100 /media/kevin/Data}$color${else}${voffset -12}${endif}
+ ${if_mounted /media/psf/Torrents}Torrent: ${alignr}${fs_used /media/psf/Torrents}/${fs_size /media/psf/Torrents} ${color2}${fs_bar 8,100 /media/psf/Torrents}$color${else}${voffset -12}${endif}
+
+${color1}BATTERY ${hr 2}$color
+ Status: ${alignr}${if_match ${battery_percent BAT0}<=15}${color red}${battery BAT0}${else}${if_match ${battery_percent BAT0}<=25}${color yellow}${battery BAT0}${else}${if_match ${battery_percent BAT0}>25}${color green}${battery BAT0}${endif}${endif}${endif} 
+ ${alignr}${if_match ${battery_percent BAT0}<=15}${color red}${blink ${battery_bar}}${color}${else}${if_match ${battery_percent BAT0}<=25}${color yellow}${battery_bar}${else}${if_match ${battery_percent BAT0}>25}${color2}${battery_bar} ${endif}${endif}${endif}
+
+${if_up wlp5s0}${voffset -10}${color1}NETWORK (WiFi) ${hr 2}$color
+ ESSID: $alignr ${wireless_essid wlp5s0}
+ Up: ${upspeed wlp5s0}kb/s ${alignr}${upspeedgraph wlp5s0 15,100 3399ff 3399ff}
+ Down: ${downspeed wlp5s0}kb/s ${alignr}${downspeedgraph wlp5s0 15,100 3399ff 3399ff}
+ Upload: ${alignr}${totalup wlp5s0}
+ Download: ${alignr}${totaldown wlp5s0}
+ Signal: ${wireless_link_qual_perc wlp5s0}% ${alignr}${color2}${wireless_link_bar 8,100 wlp5s0}$color
+ Local Ip: ${alignr}${addr wlp5s0}${endif}
+  
+${if_up enp0s5}${color1}NETWORK (Wired) ${hr 2}$color
+ Up: ${upspeed enp0s5}kb/s ${alignr}${upspeedgraph enp0s5 15,100 orange orange}
+ Down: ${downspeed enp0s5}kb/s ${alignr}${downspeedgraph enp0s5 15,100 orange orange}
+ Upload: ${alignr}${totalup enp0s5}
+ Download: ${alignr}${totaldown enp0s5}
+ Local Ip: ${alignr}${addr enp0s5}${endif}
+
+${color1}PROCESSES MEM ${hr 2}$color
+ NAME $alignr PID    CPU    MEM
+ ${top_mem name 1} $alignr ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+ ${top_mem name 2} $alignr ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+ ${top_mem name 3} $alignr ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+ ${top_mem name 4} $alignr ${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
+ ${top_mem name 5} $alignr ${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
+ ${top_mem name 6} $alignr ${top_mem pid 6} ${top_mem cpu 6} ${top_mem mem 6}
+ ${top_mem name 7} $alignr ${top_mem pid 7} ${top_mem cpu 7} ${top_mem mem 7}
+
+${color1}PROCESSES CPU ${hr 2}$color
+ NAME $alignr PID    CPU    MEM
+ ${top name 1} $alignr ${top pid 1} ${top cpu 1} ${top mem 1}
+ ${top name 2} $alignr ${top pid 2} ${top cpu 2} ${top mem 2}
+ ${top name 3} $alignr ${top pid 3} ${top cpu 3} ${top mem 3}
+ ${top name 4} $alignr ${top pid 4} ${top cpu 4} ${top mem 4}
+ ${top name 5} $alignr ${top pid 5} ${top cpu 5} ${top mem 5}
+ ${top name 6} $alignr ${top pid 6} ${top cpu 6} ${top mem 6}
+ ${top name 7} $alignr ${top pid 7} ${top cpu 7} ${top mem 7}
