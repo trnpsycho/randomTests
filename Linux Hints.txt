@@ -13,3 +13,13 @@ ________________________________________________________________________________
 
     If you want to clear the cached credentials use `kdestroy'.
 ____________________________________________________________________________________
+
+
+NVidia Problems.
+____________________________________________________________________________________
+To reinstall nvidia drivers, go to another shell (alt-f2) and remove the old drivers. 
+sudo apt remove nvidia*
+
+Once this is done, reboot and linux should boot with generic drivers. From here you can reinstall the NEW nvidia drivers. 
+At this point it's a good idea to delete the xorg.comf file located in /etc/X11.
+____________________________________________________________________________________
