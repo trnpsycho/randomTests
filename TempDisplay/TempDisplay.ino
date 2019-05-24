@@ -1,82 +1,49 @@
 /*
-  LiquidCrystal Library - Hello World
-
- Demonstrates the use a 16x2 LCD display.  The LiquidCrystal
- library works with all LCD displays that are compatible with the
- Hitachi HD44780 driver. There are many of them out there, and you
- can usually tell them by the 16-pin interface.
-
- This sketch prints "Hello World!" to the LCD
- and shows the time.
-
-  The circuit:
- * LCD RS pin to digital pin 12
- * LCD Enable pin to digital pin 11
- * LCD D4 pin to digital pin 5
- * LCD D5 pin to digital pin 4
- * LCD D6 pin to digital pin 3
- * LCD D7 pin to digital pin 2
- * LCD R/W pin to ground
- * LCD VSS pin to ground
- * LCD VCC pin to 5V
- * 10K resistor:
- * ends to +5V and ground
- * wiper to LCD VO pin (pin 3)
-
- Library originally added 18 Apr 2008
- by David A. Mellis
- library modified 5 Jul 2009
- by Limor Fried (http://www.ladyada.net)
- example added 9 Jul 2009
- by Tom Igoe
- modified 22 Nov 2010
- by Tom Igoe
- modified 7 Nov 2016
- by Arturo Guadalupi
-
- This example code is in the public domain.
-
- http://www.arduino.cc/en/Tutorial/LiquidCrystalHelloWorld
-
+ * The following sketch will provide a temp monitoring circuit as well as a auto dimmer for the LCD screen.
+ * Kevin Farley 5/22/2019
 */
 
 // include the library code:
 #include <LiquidCrystal.h>
 #include <math.h>
+#include <SPI.h>
+#include <Ethernet.h>
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
-const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+const int rs = 12, en = 11, d4 = 6, d5 = 5, d6 = 4, d7 = 3;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 int LightSensorPin = 0;
-int ThermistorPin = 1;
-int BacklightOut = 10;
+int Thermistor1Pin = 1;
+int Thermistor2Pin  = 2;
+int BacklightOut = 2;
+int TestIPPin = 7;
 
-int Vo, Lo;
-float R1 = 9500;
-float logR2, R2, T, C;
-float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;
-
+int Vo, Vo2, Lo;
+float T1, C1, C2, T2, tick;
+bool Test;
 
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
-  // Print a message to the LCD.
-  //lcd.print("Farley's House!");
   pinMode(BacklightOut,OUTPUT);
-  Serial.begin(57600);
+  pinMode(TestIPPin, INPUT_PULLUP);
+  Serial.begin(115200);
 }
 
 void loop() {
   
-  Vo = analogRead(ThermistorPin);
+  Vo = analogRead(Thermistor1Pin);
+  Vo2 = analogRead(Thermistor2Pin);
   Lo = analogRead(LightSensorPin);
-  R2 = R1 * ((1023.0 / (float)Vo) - 1.0);
-  logR2 = log(R2);
-  T = (1.0 / (c1 + c2*logR2 + c3*logR2*logR2*logR2));
-  C = T - 273.15;
-  T = (C * 9.0)/ 5.0 + 32.0; 
+  Test = digitalRead(TestIPPin);
+
+  C1 = Thermister(Vo);
+  T1 = CtoF(C1);
+
+  C2 = Thermister(Vo2);
+  T2 = CtoF(C2);
 
   // Turn On backlight
   if(Lo<900){
@@ -88,21 +55,52 @@ void loop() {
   // set the cursor to column 0, line 0
   // (note: line 0 is the first row):
   lcd.setCursor(0, 0);
-  lcd.print("Temp = ");
-  lcd.print(C,1);   
-  lcd.print(" C");
+  if(Test){
+    lcd.print("Temp 1 = ");
+    lcd.print(T1,1);   
+    lcd.print(" F");
+  
+    // set the cursor to column 0, line 1
+    // (note: line 1 is the second row, since counting begins with 0):
+    lcd.setCursor(0, 1);
+    lcd.print("Temp 2 = ");
+    lcd.print(T2,1);   
+    lcd.print(" F");
+  } else {
+    lcd.clear();
+    lcd.print("Testing");
+  }
+  tick = 4.7/1023;
 
-  // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
-  lcd.print("Temp = ");
-  lcd.print(T,1);   
-  lcd.print(" F");
-
-  Serial.print("Raw: ");
+  Serial.print(Test);
+  Serial.print("Raw 1: ");
   Serial.print(Vo);
-  Serial.print(" Temp: ");
-  Serial.println(T);
-  delay(1000);
+  Serial.print(" - ");
+  Serial.print((tick*Vo));
+  Serial.print(" Vdc Temp1: ");
+  Serial.print(T1);
 
+  Serial.print(" --- Raw 2: ");
+  Serial.print(Vo2);
+  Serial.print(" - ");
+  Serial.print((tick*Vo2));
+  Serial.print(" Vdc Temp2: ");
+  Serial.print(T2);
+  Serial.print(" --- Light: ");
+  Serial.println(Lo);
+  delay(1000);
+}
+
+double Thermister(int RawADC) {  //Function to perform the fancy math of the Steinhart-Hart equation
+ double Temp;
+ Temp = log(((10240000/RawADC) - 10000));
+ Temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * Temp * Temp ))* Temp );
+ Temp = Temp - 273.15;              // Convert Kelvin to Celsius
+ return Temp;
+}
+
+double CtoF(double CTemp) {
+  double Temp;
+  Temp = (CTemp * 9.0)/ 5.0 + 32.0;
+  return Temp;
 }
