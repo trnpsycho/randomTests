@@ -13,6 +13,19 @@ Git Server 172.16.50.10
 root:Psycho####s
 kevin:Psycho####s
 ________________________________
+Forum Server 172.16.1.50
+root:Psycho####s
+
+MariaDB
+root:csiAdmin1
+
+forum admin
+farleyk:Psycho####s
+
+forum db
+forumadmin:ucosForum
+________________________________
+
 Symantec Endpoint Protection
 Pwd: canttouchthis
 ________________________________
