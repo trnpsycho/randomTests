@@ -1,0 +1,85 @@
+c:\>cd CertJira
+
+c:\CertJira>keytool -genkey -alias jira -keyalg RSA -keystore jira.jks -keysize 2048
+Enter keystore password:
+Re-enter new password:
+What is your first and last name?
+  [Unknown]:  support.fuelfacs.com
+What is the name of your organizational unit?
+  [Unknown]:  IT
+What is the name of your organization?
+  [Unknown]:  TechnipFMC
+What is the name of your City or Locality?
+  [Unknown]:  Lenexa
+What is the name of your State or Province?
+  [Unknown]:  Kansas
+What is the two-letter country code for this unit?
+  [Unknown]:  US
+Is CN=support.fuelfacs.com, OU=IT, O=TechnipFMC, L=Lenexa, ST=Kansas, C=US correct?
+  [no]:  yes
+
+Enter key password for <jira>
+        (RETURN if same as keystore password):
+
+c:\CertJira>keytool -certreq -keyalg RSA -alias jira -file jira.csr -keystore jira.jks
+Enter keystore password:
+
+<Get certificate from provider, using newly created jira.csr file here...>
+
+c:\CertJira>keytool -import -alias jira -keystore jira.jks -file support_fuelfacs_com.p7b
+Enter keystore password:
+
+Top-level certificate in reply:
+
+Owner: CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+Issuer: CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+Serial number: 83be056904246b1a1756ac95991c74a
+Valid from: Thu Nov 09 18:00:00 CST 2006 until: Sun Nov 09 18:00:00 CST 2031
+Certificate fingerprints:
+         MD5:  79:E4:A9:84:0D:7D:3A:96:D7:C0:4F:E2:43:4C:89:2E
+         SHA1: A8:98:5D:3A:65:E5:E5:C4:B2:D7:D6:6D:40:C6:DD:2F:B1:9C:54:36
+         SHA256: 43:48:A0:E9:44:4C:78:CB:26:5E:05:8D:5E:89:44:B4:D8:4F:96:62:BD:26:DB:25:7F:89:34:A4:43:C7:01:61
+         Signature algorithm name: SHA1withRSA
+         Version: 3
+
+Extensions:
+
+#1: ObjectId: 2.5.29.35 Criticality=false
+AuthorityKeyIdentifier [
+KeyIdentifier [
+0000: 03 DE 50 35 56 D1 4C BB   66 F0 A3 E2 1B 1B C3 97  ..P5V.L.f.......
+0010: B2 3D D1 55                                        .=.U
+]
+]
+
+#2: ObjectId: 2.5.29.19 Criticality=true
+BasicConstraints:[
+  CA:true
+  PathLen:2147483647
+]
+
+#3: ObjectId: 2.5.29.15 Criticality=true
+KeyUsage [
+  DigitalSignature
+  Key_CertSign
+  Crl_Sign
+]
+
+#4: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 03 DE 50 35 56 D1 4C BB   66 F0 A3 E2 1B 1B C3 97  ..P5V.L.f.......
+0010: B2 3D D1 55                                        .=.U
+]
+]
+
+
+... is not trusted. Install reply anyway? [no]:  yes
+Certificate reply was installed in keystore
+
+c:\CertJira>keytool -list -alias jira -keystore jira.jks
+Enter keystore password:
+jira, Jun 6, 2019, PrivateKeyEntry,
+Certificate fingerprint (SHA1): 83:61:F8:DF:10:FC:40:36:A9:A0:D3:81:D7:23:98:78:4A:41:89:D7
+
+c:\CertJira>
