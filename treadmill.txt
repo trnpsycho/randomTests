@@ -1,0 +1,8 @@
+How to recalibrate the level sensor.
+
+1. remove safety key
+2. press and hold the speed+ and stop keys at the same time
+3. Put the safety key in/on and release the keys
+4. press stop once
+5. hit the incline + arrow and let the incline go the whole way up and down
+6. remove safety key and try
