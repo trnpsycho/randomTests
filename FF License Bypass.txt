@@ -1,0 +1,24 @@
+Edit host file to include the following line
+
+127.0.0.1	checkip.dyndns.com
+
+
+Create a new file in the directory c:/web called default.htm.
+In this file place the following line of code: 
+	<html><head><title>Current IP Check</title></head><body>My Current IP Address: 68.70.67.139</body></html>
+Save the file.
+
+Open IIS manager.
+Expand Default Web Site, but do NOT drill down to ffnet.
+While Default Web Site is highlighted, double click IIS/Authentication
+Set Anonymous Authentication to Enabled.
+
+NOW click ffnet, and IIS/Authentication. If Anonymous Authentication got enabled here, turn it back off. (It usually will pickup whatever is in the default which is why we have to turn it back off.)
+Click back on Default Web Site.
+Restart the website. (On the right hand side of the screen you'll see the Restart under Manage Website.)
+
+
+Test to make sure when you go to the address http://checkip.dyndns.com/, your browser returns the following string:
+	My Current IP Address: 68.70.67.139 <-- The MY at the beginning is what you're looking for. If the My is missing, you did something wrong.
+
+If the test worked, you should be good to go. Treat this as a top secret hack. Please don't let a bunch of people know how this is done, as I've already been warned about passing this data on.
