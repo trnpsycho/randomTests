@@ -1,0 +1,4 @@
+Wipe EMMC to boot from SD card
+1) Boot from SD card by pressing S2 while powering on...
+2) Log in using root, St0rMh@v3n
+3) Issue the following command: dd if=/dev/zero of=/dev/mmcblk1 bs=1024 count=1024
