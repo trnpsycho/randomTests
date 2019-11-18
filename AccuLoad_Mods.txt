@@ -1,0 +1,9 @@
+Accuload Notes/Changes
+
+1) Removed watermark
+	~/Accuload4/HMI/public/javascripts/utils-RunReadyMode.js
+		-- Modified the showNotLegalForTrade() function to always return isLegal
+
+2) Copied stylesheets b to stylesheets a to always keep in dark mode.
+	~/Accuload4/HMI/public/stylesheets/HMI-Custom_b.css 
+	~/Accuload4/HMI/public/stylesheets/AccuLoad_b.css 
