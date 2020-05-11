@@ -9,7 +9,7 @@ Bug Tracker:
 Cloud / Git server
 	Machine name: Owncloud.pdc1
 	192.168.8.5
-	root:Dingo3264?
+	root:Psycho#s
 	kevin:psycho#
 	git:git
 

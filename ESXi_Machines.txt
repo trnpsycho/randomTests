@@ -6,3 +6,10 @@ Password: nomorevax4You
 server: vcenter.pdc1
 Username: OU account
 Password: OU Password
+
+server: eng-vcenter.pdc1
+Username: OU Account
+Password: OU Account
+vsphere server: 172.16.40.10
+Username: Fuelfacs
+Password: Fu3lf@cs
