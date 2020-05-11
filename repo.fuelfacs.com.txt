@@ -1,0 +1,7 @@
+Transfer files using WinSCP. Make connection to repo.fuelfacs.com, not the IP address.
+
+Files go in: 
+	/var/www/keys
+
+Edit /etc/httpd/conf.d/ssl.conf to include the name of the new cert.
+
