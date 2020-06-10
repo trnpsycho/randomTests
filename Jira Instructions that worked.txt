@@ -26,6 +26,10 @@ Enter keystore password:
 
 <Get certificate from provider, using newly created jira.csr file here...>
 
+
+.......Verify domain here........
+
+
 c:\CertJira>keytool -import -alias jira -keystore jira.jks -file support_fuelfacs_com.p7b
 Enter keystore password:
 
