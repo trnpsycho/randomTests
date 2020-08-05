@@ -30,7 +30,7 @@ const char *password2 = STAPSK2;
 #define DHTTYPE  DHTesp::DHT11
 
 // Variables
-String Room = "Kitchen";
+String Room = "Office";
 float humidity;
 float temperature;
 int updateSeconds = 60 / 5;
